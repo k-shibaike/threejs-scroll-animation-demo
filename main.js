@@ -34,6 +34,12 @@ box.position.set(0, 0.5, -15);
 box.rotation.set(1, 1, 0);
 scene.add(box);
 
+const torusGeometry = new THREE.TorusGeometry(8, 2, 16, 100);
+const TorusMaterial = new THREE.MeshNormalMaterial();
+const torus = new THREE.Mesh(torusGeometry, TorusMaterial);
+torus.position.set(0, 1, 10);
+scene.add(torus);
+
 // Renderer
 const renderer = new THREE.WebGLRenderer({
   canvas: canvas,
