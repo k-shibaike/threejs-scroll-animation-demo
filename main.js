@@ -30,7 +30,7 @@ const camera = new THREE.PerspectiveCamera(
 const boxGeometry = new THREE.BoxGeometry(5, 5, 5, 10);
 const boxMaterial = new THREE.MeshNormalMaterial();
 const box = new THREE.Mesh(boxGeometry, boxMaterial);
-box.position.set(0, 0.5, -1.5);
+box.position.set(0, 0.5, -15);
 scene.add(box);
 
 // Renderer
