@@ -36,8 +36,8 @@ scene.add(box);
 
 // donut object add
 const torusGeometry = new THREE.TorusGeometry(8, 2, 16, 100);
-const TorusMaterial = new THREE.MeshNormalMaterial();
-const torus = new THREE.Mesh(torusGeometry, TorusMaterial);
+const torusMaterial = new THREE.MeshNormalMaterial();
+const torus = new THREE.Mesh(torusGeometry, torusMaterial);
 torus.position.set(0, 1, 10);
 scene.add(torus);
 
@@ -49,9 +49,39 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(sizeObj.width, sizeObj.height);
 renderer.setPixelRatio(window.devicePixelRatio);
 
+// Scroll Animation
+const animationScripts = [];
+
+animationScripts.push({
+  start: 0,
+  end: 40,
+  function() {
+    camera.lookAt(box.position);
+    camera.position.set(0, 1, 10);
+    box.position.z += 0.01;
+  }
+});
+
+// Get scroll rate
+let scrollRate = 0;
+document.body.onscroll = () => {
+  scrollRate = (document.documentElement.scrollTop / 
+    (document.documentElement.scrollHeight - 
+    document.documentElement.clientHeight)) * 100;
+    console.log(`scrollRate is ${scrollRate }%`);
+}
+
+// Start animation use animationScripts
+function playScrollAnimation() {
+  animationScripts.forEach((animation) => {
+    animation.function();
+  });
+}
+
 // Animation
 const tick = () => {
   window.requestAnimationFrame(tick);
+  playScrollAnimation();
   renderer.render(scene, camera);
 }
 
