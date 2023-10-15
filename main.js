@@ -67,6 +67,7 @@ animationScripts.push({
     camera.lookAt(box.position);
     camera.position.set(0, 1, 10);
     box.position.z = linear(-15, 2, scaleRate(0, 40));
+    torus.position.z = linear(10, -20, scaleRate(0, 40));
   }
 });
 
@@ -84,8 +85,7 @@ function playScrollAnimation() {
   animationScripts.forEach((animation) => {
     if (scrollRate >= animation.start && scrollRate < animation.end) {
       animation.function();
-    }
-    
+    } 
   });
 }
 
