@@ -26,7 +26,7 @@ const camera = new THREE.PerspectiveCamera(
   1000
 );
 
-// Make object
+// box object add
 const boxGeometry = new THREE.BoxGeometry(5, 5, 5, 10);
 const boxMaterial = new THREE.MeshNormalMaterial();
 const box = new THREE.Mesh(boxGeometry, boxMaterial);
@@ -34,6 +34,7 @@ box.position.set(0, 0.5, -15);
 box.rotation.set(1, 1, 0);
 scene.add(box);
 
+// donut object add
 const torusGeometry = new THREE.TorusGeometry(8, 2, 16, 100);
 const TorusMaterial = new THREE.MeshNormalMaterial();
 const torus = new THREE.Mesh(torusGeometry, TorusMaterial);
