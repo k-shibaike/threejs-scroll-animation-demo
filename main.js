@@ -49,6 +49,14 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(sizeObj.width, sizeObj.height);
 renderer.setPixelRatio(window.devicePixelRatio);
 
+// Smoothly animate using linear interpolation
+function linear(x, y, a) {
+  return (1 - a) * x + a * y;
+}
+
+function scaleRate(start, end) {
+  return (scrollRate - start) / (end - start);
+}
 // Scroll Animation
 const animationScripts = [];
 
@@ -58,7 +66,7 @@ animationScripts.push({
   function() {
     camera.lookAt(box.position);
     camera.position.set(0, 1, 10);
-    box.position.z += 0.01;
+    box.position.z = linear(-15, 2, scaleRate(0, 40));
   }
 });
 
@@ -74,7 +82,10 @@ document.body.onscroll = () => {
 // Start animation use animationScripts
 function playScrollAnimation() {
   animationScripts.forEach((animation) => {
-    animation.function();
+    if (scrollRate >= animation.start && scrollRate < animation.end) {
+      animation.function();
+    }
+    
   });
 }
 
